@@ -1,0 +1,132 @@
+.cardWrap {
+  padding: 24px;
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 888px;
+}
+
+.imgWrapper {
+  width: 292px;
+  height: 320px;
+  flex-shrink: 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.nameAndPrice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hart {
+  background: none;
+  padding: 0;
+}
+
+.hart svg {
+  width: 26px;
+  height: 24px;
+}
+
+.titleName {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: var(--main);
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #101828;
+}
+
+.ratingAndLocation {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  stroke: var(--gray);
+  transition: all 0.3s ease;
+}
+
+.location svg {
+  width: 20px;
+  height: 20px;
+}
+
+.location:hover {
+  stroke: var(--main);
+}
+
+.description {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 16px;
+  color: var(--main);
+  border-radius: 100px;
+  padding: 12px 18px;
+  background-color: var(--badges);
+}
+
+.featureItem svg {
+  width: 20px;
+  height: 20px;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 200px;
+  padding: 16px 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  background-color: var(--button);
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+}

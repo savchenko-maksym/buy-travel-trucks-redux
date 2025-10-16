@@ -1,0 +1,78 @@
+.titleFormWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.titleForm {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+}
+
+.titleDescription {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.formBook {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field {
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  padding: 18px;
+  background-color: var(--gray-light);
+  box-sizing: border-box;
+}
+
+.field::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.fieldComment {
+  border-radius: 12px;
+  border: none;
+  padding: 18px;
+  background-color: var(--gray-light);
+  resize: none;
+  height: 120px;
+}
+
+.fieldComment::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  border-radius: 200px;
+  padding: 16px 60px;
+  max-width: 166px;
+  background-color: #e44848;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: var(--button-hover);
+}

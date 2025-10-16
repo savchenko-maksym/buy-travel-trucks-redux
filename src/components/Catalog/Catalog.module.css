@@ -1,0 +1,40 @@
+.mainWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  margin-top: 48px;
+}
+
+.menuWrap {
+  width: 360px;
+}
+
+.trackList {
+  flex: 1;
+}
+
+.loadMoreWrap {
+  display: flex;
+  justify-content: center; /* горизонтальне центрування */
+  margin-bottom: 40px;
+}
+
+.loadMore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 200px;
+  padding: 16px 40px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: black;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  border: 3px solid lightgrey;
+}
+
+.loadMore:hover {
+  border-color: var(--button-hover);
+}

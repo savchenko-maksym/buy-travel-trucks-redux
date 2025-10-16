@@ -1,0 +1,50 @@
+.reviewsAndFormWrap {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-bottom: 80px;
+  max-width: 100%;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  width: 631px;
+  flex-shrink: 0;
+}
+
+.form {
+  flex: 1 1 0;
+  padding: 44px 57px;
+  max-width: 641px;
+  min-width: 0;
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  flex-shrink: 1;
+}
+
+.logoNameWrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.logoNameWrap span {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33333;
+  color: #e44848;
+  border-radius: 60px;
+  background-color: #f2f4f7;
+  padding: 15px 21px 13px;
+}
+
+.starFilled path {
+  fill: #f5a623; /* золотий колір для заповненої зірочки */
+}
+
+.starEmpty path {
+  fill: #ddd; /* світло-сіра для порожньої зірочки */
+}

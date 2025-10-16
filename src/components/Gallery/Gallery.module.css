@@ -1,0 +1,35 @@
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  margin-bottom: 28px;
+}
+
+.gallery img {
+  width: 292px;
+  height: 312px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: zoom-in;
+  flex-shrink: 0; /* щоб картинки не стискались */
+  scroll-snap-align: start;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: zoom-out;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
