@@ -1,26 +1,45 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const axiosAPI = axios.create({
   baseURL: "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io",
 });
 
-export const fetchTracks = async ({ location, form, equipment } = {}) => {
-  const params = {};
-  if (location) {
-    params.location = location;
-  }
-  if (form) {
-    params.form = form;
-  }
+// export const fetchTracks = createAsyncThunk(
+//   "fetchTracks",
+//   async ({ location, form, equipment } = {}) => {
+//     try {
+//       const params = {};
+//       if (location) {
+//         params.location = location;
+//       }
+//       if (form) {
+//         params.form = form;
+//       }
 
-  if (equipment && equipment.length > 0) {
-    equipment.forEach((item) => {
-      params[item] = true;
-    });
+//       if (equipment && equipment.length > 0) {
+//         equipment.forEach((item) => {
+//           params[item] = true;
+//         });
+//       }
+//       const response = await axiosAPI.get("/campers", { params });
+//       return response.data.items;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
+
+export const fetchTracks = createAsyncThunk("fetchTracks", async () => {
+  try {
+    const response = await axiosAPI.get("/campers");
+    console.log(response);
+
+    return response.data.items;
+  } catch (error) {
+    console.log(error);
   }
-  const response = await axiosAPI.get("/campers", { params });
-  return response.data.items;
-};
+});
 
 export const fetchTrackById = async (id) => {
   const response = await axiosAPI.get(`/campers/${id}`);
