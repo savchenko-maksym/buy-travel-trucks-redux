@@ -4,9 +4,9 @@ import s from "./Reviews.module.css";
 import StarIcon from "../../assets/images/icons/star.svg?react";
 
 const Reviews = () => {
-  const { track } = useOutletContext();
+  const { selectedTrack } = useOutletContext();
 
-  if (!track?.reviews || track.reviews.length === 0) {
+  if (!selectedTrack?.reviews || selectedTrack.reviews.length === 0) {
     return <div>No reviews yet.</div>;
   }
 
@@ -26,7 +26,7 @@ const Reviews = () => {
   return (
     <div className={s.reviewsAndFormWrap}>
       <div className={s.reviews}>
-        {track.reviews.map((review, index) => (
+        {selectedTrack.reviews.map((review, index) => (
           <div key={index}>
             <div className={s.logoNameWrap}>
               <span>{review.reviewer_name.charAt(0).toUpperCase()}</span>

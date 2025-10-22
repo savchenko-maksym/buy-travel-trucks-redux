@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchTrackById } from "../../redux/trucks/operations.js";
+import { fetchTrackByIdThunk } from "../../redux/trucks/operations.js";
 import s from "./OptionsOneTrack.module.css";
 import TransmissionIcon from "../../assets/images/icons/automatic.svg?react";
 import EngineIcon from "../../assets/images/icons/petrol.svg?react";
@@ -13,22 +13,30 @@ import RefrigeratorIcon from "../../assets/images/icons/refrigeration.svg?react"
 import MicrowaveIcon from "../../assets/images/icons/microwave.svg?react";
 import GasIcon from "../../assets/images/icons/gas.svg?react";
 import WaterIcon from "../../assets/images/icons/water.svg?react";
+import { useDispatch, useSelector } from "react-redux";
 
 const OptionsOneTrack = () => {
   const { id } = useParams();
-  const [track, setTrack] = useState(null);
+  const dispatch = useDispatch();
+
+  const selectedTrack = useSelector((state) => state.tracks.selectedTrack);
+  // const [track, setTrack] = useState(null);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const track = await fetchTrackById(id);
+  //       setTrack(track);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getData();
+  // }, [id]);
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const track = await fetchTrackById(id);
-        setTrack(track);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, [id]);
+    dispatch(fetchTrackByIdThunk(id));
+  }, [dispatch, id]);
 
   const FEATURES_MAP = {
     transmission: { icon: <TransmissionIcon />, label: (val) => val },
@@ -44,14 +52,14 @@ const OptionsOneTrack = () => {
     water: { icon: <WaterIcon />, label: () => "Water" },
   };
 
-  if (!track) {
+  if (!selectedTrack) {
     return <p>Loading...</p>; // або просто null
   }
 
   return (
     <div className={s.features}>
       {Object.entries(FEATURES_MAP).map(([key, { icon, label }]) => {
-        const value = track[key]; // беремо значення з пропів data
+        const value = selectedTrack[key]; // беремо значення з пропів data
         if (!value) return null; // якщо false → не рендеримо
 
         return (

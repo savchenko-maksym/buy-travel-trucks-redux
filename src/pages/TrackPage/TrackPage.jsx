@@ -1,38 +1,47 @@
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchTrackById } from "../../redux/trucks/operations.js";
+import { fetchTrackByIdThunk } from "../../redux/trucks/operations.js";
 import s from "./TrackPage.module.css";
 import StarIcon from "../../assets/images/icons/star.svg?react";
 import LocationIcon from "../../assets/images/icons/location.svg?react";
 import Gallery from "../../components/Gallery/Gallery.jsx";
 import Container from "../../components/Container/Container.jsx";
 import clsx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
 
 const TrackPage = () => {
   const { id } = useParams();
-  const [track, setTrack] = useState(null);
+  const dispatch = useDispatch();
+  const selectedTrack = useSelector((state) => state.tracks.selectedTrack);
+
+  // const [track, setTrack] = useState(null);
+
   const setActiveClass = ({ isActive }) => {
     return clsx(s.link, isActive && s.active);
   };
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const track = await fetchTrackById(id);
-        setTrack(track);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
-  }, [id]);
+    dispatch(fetchTrackByIdThunk(id));
+  }, [dispatch, id]);
 
-  if (!track) {
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     try {
+  //       const track = await fetchTrackById(id);
+  //       setTrack(track);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getData();
+  // }, [id]);
+
+  if (!selectedTrack) {
     return <p>Loading...</p>;
   }
 
   const { name, price, rating, location, description, gallery, reviews } =
-    track;
+    selectedTrack;
 
   return (
     <div>
@@ -77,7 +86,7 @@ const TrackPage = () => {
           </NavLink>
         </nav>
         <div>
-          <Outlet context={{ track }} />
+          <Outlet context={{ selectedTrack }} />
         </div>
       </Container>
     </div>

@@ -13,7 +13,7 @@ const Catalog = () => {
   const [itemsToShow, setItemsToShow] = useState(5);
 
   const tracks = useSelector((state) => state.tracks.tracks);
-  console.log(tracks);
+  const error = useSelector((state) => state.tracks.error);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -50,7 +50,7 @@ const Catalog = () => {
       <Container>
         <div className={s.mainWrap}>
           <div className={s.menuWrap}>
-            {/* <SearchMenu onSearch={handleSearch} /> */}
+            <SearchMenu />
           </div>
           <div className={s.trackList}>
             <TrackList tracks={tracks} />
@@ -62,6 +62,7 @@ const Catalog = () => {
               </div>
             )} */}
           </div>
+          {error && <p>Server Error</p>}
         </div>
       </Container>
     </div>

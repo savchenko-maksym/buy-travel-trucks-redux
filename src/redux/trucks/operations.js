@@ -30,21 +30,37 @@ export const axiosAPI = axios.create({
 //   }
 // );
 
-export const fetchTracks = createAsyncThunk("fetchTracks", async () => {
-  try {
-    const response = await axiosAPI.get("/campers");
-    console.log(response);
+export const fetchTracks = createAsyncThunk(
+  "fetchTracks",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axiosAPI.get("/campers");
 
-    return response.data.items;
-  } catch (error) {
-    console.log(error);
+      return response.data.items;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);
 
-export const fetchTrackById = async (id) => {
-  const response = await axiosAPI.get(`/campers/${id}`);
-  return response.data;
-};
+// export const fetchTrackById = async (id) => {
+//   const response = await axiosAPI.get(`/campers/${id}`);
+//   return response.data;
+// };
+
+export const fetchTrackByIdThunk = createAsyncThunk(
+  "tracks/fetchTrackById",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axiosAPI.get(`/campers/${id}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const fetchAllLocations = async () => {
   const response = await axiosAPI.get("/campers");

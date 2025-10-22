@@ -4,7 +4,7 @@ import Forms from "../Forms/Forms.jsx";
 import OptionsOneTrack from "../OptionsOneTrack/OptionsOneTrack.jsx";
 
 const Features = () => {
-  const { track } = useOutletContext();
+  const { selectedTrack } = useOutletContext();
 
   return (
     <div className={s.featuresAndFormWrap}>
@@ -15,27 +15,27 @@ const Features = () => {
           <ul className={s.list}>
             <li className={s.item}>
               <span>Form</span>
-              <span>{track.form}</span>
+              <span>{selectedTrack.form}</span>
             </li>
             <li className={s.item}>
               <span>Length</span>
-              <span>{track.length}</span>
+              <span>{selectedTrack.length}</span>
             </li>
             <li className={s.item}>
               <span>Width</span>
-              <span>{track.width}</span>
+              <span>{selectedTrack.width}</span>
             </li>
             <li className={s.item}>
               <span>Height</span>
-              <span>{track.height}</span>
+              <span>{selectedTrack.height}</span>
             </li>
             <li className={s.item}>
               <span>Tank</span>
-              <span> {track.tank}</span>
+              <span> {selectedTrack.tank}</span>
             </li>
             <li className={s.item}>
               <span>Consumption</span>
-              <span>{track.consumption}</span>
+              <span>{selectedTrack.consumption}</span>
             </li>
           </ul>
         </div>
