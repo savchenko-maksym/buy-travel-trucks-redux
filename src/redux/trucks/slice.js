@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import { fetchTracks, fetchTrackByIdThunk } from "./operations.js";
 
 const initialState = {
@@ -27,12 +27,28 @@ const slice = createSlice({
       .addCase(fetchTracks.fulfilled, (state, action) => {
         state.tracks = action.payload;
       })
-      .addCase(fetchTracks.rejected, (state, action) => {
-        state.error = action.payload;
-      })
       .addCase(fetchTrackByIdThunk.fulfilled, (state, action) => {
         state.selectedTrack = action.payload;
-      });
+      })
+      .addMatcher(
+        isAnyOf(fetchTracks.rejected, fetchTrackByIdThunk.rejected),
+        (state, action) => {
+          state.error = action.payload;
+        }
+      )
+      .addMatcher(
+        isAnyOf(fetchTracks.pending, fetchTrackByIdThunk.pending),
+        (state, action) => {
+          state.isLoading = true;
+          state.error = null;
+        }
+      )
+      .addMatcher(
+        isAnyOf(fetchTracks.fulfilled, fetchTrackByIdThunk.fulfilled),
+        (state, action) => {
+          state.isLoading = false;
+        }
+      );
   },
 });
 

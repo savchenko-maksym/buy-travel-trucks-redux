@@ -37,7 +37,11 @@ const TrackPage = () => {
   // }, [id]);
 
   if (!selectedTrack) {
-    return <p>Loading...</p>;
+    return (
+      <Container>
+        <p>loading...</p>
+      </Container>
+    );
   }
 
   const { name, price, rating, location, description, gallery, reviews } =

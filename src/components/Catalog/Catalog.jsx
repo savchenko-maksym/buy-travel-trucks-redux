@@ -13,7 +13,6 @@ const Catalog = () => {
   const [itemsToShow, setItemsToShow] = useState(5);
 
   const tracks = useSelector((state) => state.tracks.tracks);
-  const error = useSelector((state) => state.tracks.error);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,7 +61,6 @@ const Catalog = () => {
               </div>
             )} */}
           </div>
-          {error && <p>Server Error</p>}
         </div>
       </Container>
     </div>
