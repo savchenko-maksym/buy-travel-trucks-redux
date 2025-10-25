@@ -1,11 +1,10 @@
+import { useSelector } from "react-redux";
 import Container from "../../components/Container/Container.jsx";
-import { useFavorites } from "../../components/FavoritesContext/FavoritesContext.jsx";
 import TrackList from "../../components/TrackList/TrackList.jsx";
 import s from "./FavoritesPage.module.css";
 
 const FavoritesPage = () => {
-  const { favorites } = useFavorites();
-
+  const favorites = useSelector((state) => state.tracks.favorites);
   return (
     <div>
       <Container>

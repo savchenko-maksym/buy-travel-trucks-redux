@@ -1,9 +1,15 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { fetchTracks, fetchTrackByIdThunk } from "./operations.js";
+import {
+  fetchTracks,
+  fetchTrackByIdThunk,
+  loadFavoritesFromStorage,
+  saveFavoritedToStorage,
+} from "./operations.js";
 
 const initialState = {
   tracks: [],
   selectedTrack: null,
+  favorites: loadFavoritesFromStorage(),
   isLoading: false,
   error: null,
 };
@@ -12,14 +18,16 @@ const slice = createSlice({
   name: "tracks",
   initialState,
   reducers: {
-    dataFulfilledOperation: (state, action) => {
-      state.tracks = action.payload;
-    },
-    setLoading: (state, action) => {
-      state.isLoading = action.payload;
-    },
-    setError: (state, action) => {
-      state.error = action.payload;
+    toggleFavorite: (state, action) => {
+      const track = action.payload;
+      const exists = state.favorites.some((fav) => fav.id === track.id);
+
+      if (exists) {
+        state.favorites = state.favorites.filter((fav) => fav.id !== track.id);
+      } else {
+        state.favorites.push(track);
+      }
+      saveFavoritedToStorage(state.favorites);
     },
   },
   extraReducers: (builder) => {
@@ -53,4 +61,4 @@ const slice = createSlice({
 });
 
 export const trucksReducer = slice.reducer;
-export const { dataFulfilledOperation, setLoading, setError } = slice.actions;
+export const { toggleFavorite } = slice.actions;

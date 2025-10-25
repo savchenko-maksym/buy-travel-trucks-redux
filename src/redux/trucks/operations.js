@@ -68,3 +68,21 @@ export const fetchAllLocations = async () => {
   const uniqeLocations = [...new Set(items.map((item) => item.location))];
   return uniqeLocations;
 };
+
+export const loadFavoritesFromStorage = () => {
+  try {
+    const data = localStorage.getItem("favorites");
+    return data ? JSON.parse(data) : [];
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const saveFavoritedToStorage = (favorites) => {
+  try {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  } catch (error) {
+    console.error(error);
+  }
+};

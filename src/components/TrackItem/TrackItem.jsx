@@ -15,14 +15,20 @@ import BlackHeart from "../../assets/images/icons/blackHeart.svg?react";
 import RedHeart from "../../assets/images/icons/redHeart.svg?react";
 import LocationIcon from "../../assets/images/icons/location.svg?react";
 import { Link } from "react-router-dom";
-import { useFavorites } from "../FavoritesContext/FavoritesContext.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../redux/trucks/slice.js";
 
 const TrackItem = ({ data }) => {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.tracks.favorites);
   const { name, price, rating, location, description, gallery, reviews, id } =
     data;
 
-  const { favorites, toggleFavorite } = useFavorites();
-  const isFavorite = favorites.some((item) => item.id === id);
+  const isFavorite = favorites.some((fav) => fav.id === id);
+
+  const handleFavoriteClick = () => {
+    dispatch(toggleFavorite(data));
+  };
 
   const FEATURES_MAP = {
     transmission: { icon: <TransmissionIcon />, label: (val) => val },
@@ -51,7 +57,7 @@ const TrackItem = ({ data }) => {
               <h2 className={s.titleName}>{name}</h2>
               <span className={s.price}>
                 €{price}.00{" "}
-                <button className={s.hart} onClick={() => toggleFavorite(data)}>
+                <button className={s.hart} onClick={handleFavoriteClick}>
                   {isFavorite ? <RedHeart /> : <BlackHeart />}
                 </button>
               </span>
